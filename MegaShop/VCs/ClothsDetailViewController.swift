@@ -9,24 +9,25 @@
 
 import UIKit
 
-class ClothsDetailViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class ClothsDetailViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
  
   
-  @IBOutlet weak var imageView: UIImageView!
-  @IBOutlet weak var scrollView: UIScrollView!
-  @IBOutlet weak var pageControl: UIPageControl!
+  
   @IBOutlet weak var clothTitle: UILabel!
+  @IBOutlet weak var pageCollectionView: UICollectionView!
   @IBOutlet weak var clothName: UILabel!
   @IBOutlet weak var textView: UITextView!
   @IBOutlet weak var choiseSize: UITextField!
   @IBOutlet weak var menuOutlet: UIButton!
   @IBOutlet weak var sizeTableView: UITableView!
   
+  var cloth:Cloth?
   var clothImage: UIImage?
   var titlee :String?
   var name :String?
   var describe :String?
   var garmentSizeList = ["S", "L" , "X", "XL", "XXL"]
+  var logoURL: String?
   
   var images:[UIImage?] = [UIImage(named: "clothImage"), #imageLiteral(resourceName: "filled"), #imageLiteral(resourceName: "half"), #imageLiteral(resourceName: "empty")]
   var frame = CGRect(x: 0, y: 0, width: 0, height: 0)
@@ -35,35 +36,20 @@ class ClothsDetailViewController: UIViewController, UIScrollViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         didLoad()
-        carusel()
-      sizeTableView.isHidden = true
-    }
-
-  
-  
-  
-  
-  
-  func carusel(){
-    pageControl.numberOfPages = images.count
-    for index in 0..<images.count{
-      frame.origin.x = scrollView.frame.size.width * CGFloat(index)
-      frame.size = scrollView.frame.size
       
-      let imgView = UIImageView(frame: frame)
-      imgView.image = UIImageView(image: images[index]).image
-      self.scrollView.addSubview(imgView)
     }
-    
-    scrollView.contentSize = CGSize(width: scrollView.frame.size.width * CGFloat(images.count), height: scrollView.frame.size.height)
-    scrollView.delegate = self
-  }
+  
+
   
   func didLoad(){
     clothTitle.text = titlee
     clothName.text = name
     textView.text = describe
     navigationItem.title = titlee
+    
+    sizeTableView.isHidden = true
+    pageCollectionView.delegate = self
+    pageCollectionView.dataSource = self
     
     choiseSize.layer.borderColor = UIColor.gray.cgColor
     choiseSize.layer.borderWidth = 2
@@ -79,49 +65,6 @@ class ClothsDetailViewController: UIViewController, UIScrollViewDelegate, UITabl
       
     }
   }
-  
-  
-  
-  
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    let pageNumber = scrollView.contentOffset.x / scrollView.frame.size.width
-    pageControl.currentPage = Int(pageNumber)
-  }
- 
-
-  @IBAction func rightSwipeAction(_ sender: UISwipeGestureRecognizer) {
-    let x = CGFloat(pageControl.currentPage+1) * scrollView.frame.size.width
-    scrollView.contentOffset = CGPoint(x: x, y: 0)
-    pageControl.currentPage += 1
-    if pageControl.currentPage == 2{
-    }
-  }
-  
-  @IBAction func rightImage(_ sender: Any) {
-    let x = CGFloat(pageControl.currentPage+1) * scrollView.frame.size.width
-    scrollView.contentOffset = CGPoint(x: x, y: 0)
-    pageControl.currentPage += 1
-    if pageControl.currentPage == 2{
-    }
-  }
-  
-  @IBAction func leftSwipeImage(_ sender: UISwipeGestureRecognizer) {
-    let x = CGFloat(pageControl.currentPage-1) * scrollView.frame.size.width
-    scrollView.contentOffset = CGPoint(x: x, y: 0)
-    pageControl.currentPage -= 1
-    if pageControl.currentPage == 0{
-    }
-  }
-  
-  @IBAction func leftImage(_ sender: Any) {
-    let x = CGFloat(pageControl.currentPage-1) * scrollView.frame.size.width
-    scrollView.contentOffset = CGPoint(x: x, y: 0)
-    pageControl.currentPage -= 1
-    if pageControl.currentPage == 0{
-      
-    }
-  }
-
 }
 
 extension ClothsDetailViewController{
@@ -132,8 +75,6 @@ extension ClothsDetailViewController{
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "sizeCell", for: indexPath)
     cell.textLabel?.text = garmentSizeList[indexPath.row]
-//    cell.textLabel?.sizeThatFits(<#T##size: CGSize##CGSize#>)
-    
     
     return cell
   }
@@ -143,4 +84,24 @@ extension ClothsDetailViewController{
     choiseSize.text = "   \((cell?.textLabel?.text!)!)"
     sizeTableView.isHidden = true
   }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 4
+  }
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "pageCell", for: indexPath) as! PageCVCell
+    cell.pageImageView.load(fromUrl: logoURL!, complation: nil)
+    
+    
+    
+    return cell
+  }
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: pageCollectionView.frame.width, height: pageCollectionView.frame.height)
+  }
+
 }

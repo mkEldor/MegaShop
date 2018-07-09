@@ -32,6 +32,7 @@
 		AFB0D41E20F073B00071929E /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0D41D20F073B00071929E /* UIImageView.swift */; };
 		AFB0D42120F091930071929E /* ClothsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0D42020F091930071929E /* ClothsDetailViewController.swift */; };
 		AFB0D42520F1BE600071929E /* UserPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0D42420F1BE600071929E /* UserPageViewController.swift */; };
+		AFB0D42720F3DCC60071929E /* PageCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0D42620F3DCC60071929E /* PageCVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		AFB0D41D20F073B00071929E /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		AFB0D42020F091930071929E /* ClothsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothsDetailViewController.swift; sourceTree = "<group>"; };
 		AFB0D42420F1BE600071929E /* UserPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPageViewController.swift; sourceTree = "<group>"; };
+		AFB0D42620F3DCC60071929E /* PageCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCVCell.swift; sourceTree = "<group>"; };
 		B45A340AA804655A27B2B6FF /* Pods-MegaShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MegaShop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MegaShop/Pods-MegaShop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				AF02D7CE20ECDAEB009004FB /* FoodsCompanyTableViewCell.swift */,
 				AF37520820EE862B00D7D214 /* ClothesCompanyTableViewCell.swift */,
 				AF37521020EF22FC00D7D214 /* ClothsCollectionViewCell.swift */,
+				AFB0D42620F3DCC60071929E /* PageCVCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				AFB0D42520F1BE600071929E /* UserPageViewController.swift in Sources */,
 				AF37520F20EF1D5200D7D214 /* CartCollectionViewController.swift in Sources */,
 				AF37520D20EE9F9C00D7D214 /* ClothViewController.swift in Sources */,
+				AFB0D42720F3DCC60071929E /* PageCVCell.swift in Sources */,
 				AF02D7CF20ECDAEB009004FB /* FoodsCompanyTableViewCell.swift in Sources */,
 				AF37520B20EE8DBA00D7D214 /* ClothesCompanyViewController.swift in Sources */,
 				AF02D79620ECC151009004FB /* ViewController.swift in Sources */,

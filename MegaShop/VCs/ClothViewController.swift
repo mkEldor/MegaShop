@@ -19,7 +19,7 @@ class ClothViewController: UIViewController, UICollectionViewDelegate, UICollect
   var titlee: String = ""
   var describe: String = ""
   var array = [AnyObject]()
-  var dvcImage: UIImage?
+  var logourl: String?
   var clothsArray = [Cloth]()
   var garmentArray = [AnyObject]()
   var shoesArray = [AnyObject]()
@@ -45,15 +45,18 @@ class ClothViewController: UIViewController, UICollectionViewDelegate, UICollect
     cell.clothPrice.text = String(cloth.price!)
     cell.clothImage.load(fromUrl: cloth.logoUrl!, complation: nil)
     
+    
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
     let stroryboard = UIStoryboard(name: "Main", bundle: nil)
     let dvc = stroryboard.instantiateViewController(withIdentifier: "oneCloth") as! ClothsDetailViewController
     let cloth = clothsArray[indexPath.row]
+    logourl = cloth.logoUrl
     dvc.title = cloth.name
-    dvc.clothImage = dvcImage
+    dvc.logoURL = logourl
     dvc.titlee = titlee
     dvc.name = cloth.name
     dvc.describe = describe
